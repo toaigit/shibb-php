@@ -1,0 +1,12 @@
+#!/bin/bash
+#  Use this script to generate sp-key.pem, sp-cert.pem and sp-metadata.xml manually
+#
+if [ $# -ne 1 ] ; then
+   echo "Usage: $0 sitename"
+   exit 1
+fi
+export SITENAME=$1
+ rm sp-*.pem
+ ./keygen.sh -h $SITENAME
+ ./genmeta.sh 
+ cat sp-metadata.templ | gomplate > sp-metadata.xml

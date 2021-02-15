@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export USERUID={{.Env.ACCTUID}}
+echo "Setting USERID to $USERUID"
+echo "You need to change when you deploy on a different server"
+
+docker network create {{.Env.NETWORK}}
+
+docker image build --network {{.Env.NETWORK}} --build-arg USERUID=$USERUID -t {{.Env.DOCKERIMAGE}} .

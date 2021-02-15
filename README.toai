@@ -1,0 +1,44 @@
+Update vars.env
+    SITENAME - this is your website name such as mysite.abc123.com
+    DATADIR - this is the directory where you have all your files that you dont want to be in the docker image
+    DOCKERIMAGE - this is the name of your docker image (docker image ls)
+    CONTAINER - this is the name of your running container (run time)
+    ACCTUID - this is the uid of your unix account when you startup your container.
+    NETWORK - a network name for your container
+
+NOTES:
+    Here is the path defined in the container. You need to know this for your docker-compose.
+       /cgi/ /etc/apache2/cgi-bin/
+       DocumentRoot /var/www/html
+       Certificate files are defined under /etc/apache2/certs/
+
+    You may need to change the file shibboleth2.templ under files/shibb folder to match your company iDP.
+
+    In this repository, there is a script called gen-metadata.wrapper.  You can use this
+    script to manually generate sp-key.pem, sp-cert.pem, and sp-metadata.xml
+       Go to files/shibb
+       Run gen-metadata.wrapper 
+
+STEPS:
+
+Update vars.env
+Run gen-vars.sh
+    This will generate apache, shibb configuration files, docker compose files, and 
+    startup script based on your vars.env file
+Register files/shibb/sp-metadata.xml to your IDP
+    The above script generate sp-metadata.xml file.  You can use it to register with your IDP.
+    The EntityID name will be https://SITENAME/
+Run build.sh (build container)
+    This script will build your docker image with Apache/Shibb/PHP module.
+Setup your local folders
+   copy your site certificates (cert, key, keychain) to the DATADIR/certs
+        apache-key.pem, apache-cert.pem apache-chain.pem 
+   copy any of your cgi scripts to DATADIR/cgi-bin
+   copy any of your html pages to DATADIR/html.  For testing you can create index.html in the DATADIR/html folder.
+
+Run startup to startup the container.
+    docker ps to see if it is running.  If not, run docker log CONTAINER-NAME
+
+For testing, create index.html or phpinfo.php and place it in DATADIR/html/secure folder and accesss
+the URL https://sitename/secure/index.html.  If everything goes well, you should see your company SSO/SAML.
+

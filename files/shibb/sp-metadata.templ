@@ -1,0 +1,32 @@
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://{{.Env.SITENAME}}/">
+  <md:SPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <md:Extensions>
+      <init:RequestInitiator xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://{{.Env.SITENAME}}/Shibboleth.sso/Login"/>
+    </md:Extensions>
+    <md:KeyDescriptor>
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>
+MIIC8zCCAdugAwIBAgIUHrI2UmTw7RF/5wIabZtcgvWMeeQwDQYJKoZIhvcNAQEF
+BQAwFjEUMBIGA1UEAxMLd3d3LmFiYy5jb20wHhcNMjEwMjEzMjAxMzQ0WhcNMzEw
+MjExMjAxMzQ0WjAWMRQwEgYDVQQDEwt3d3cuYWJjLmNvbTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAKRKAhbxY+rTCuPipiC2SHpjxpNOWKUrXMYSdjVE
+YeBQG0z7YqIuwOpDs8NIAL/G4mqM34aJMncRAUWG8hkbDKqeTOXJHLVM1hKKt76u
+yGJsB365QJO3lU97DFLb6Nmu5AckzVlzhE6d3lg3eSEzqcKuf4yHyYpFucdpjxVr
+qsgls4C+tSsypAFZIyHYkRl2drIv6U3KGngztWtIXJEROitrkJ/55IZHfNjuzNxH
+KWZy+ZeEDruG8fVHJirdGtFvz8bHo4xBp9M6MzwuCtwMFLC0MEgkN61yzHSmmAN7
+IrNSUPhLadGGnfIpJc4YjjlV5UI36CYBP/YUgUAgcgkNdyMCAwEAAaM5MDcwFgYD
+VR0RBA8wDYILd3d3LmFiYy5jb20wHQYDVR0OBBYEFL8ZCOdDjLJLEyyHRygTVj8Y
+btvrMA0GCSqGSIb3DQEBBQUAA4IBAQA6XBsCuADVujAwjKkIFqD+gWnbvJk2c84G
+qKT7wNjv/ngw7mONCwlRmDQItKtV9VT7cIwzwlm9m4XrYrZPgolDeELwWK+5q2WE
+U83uLrAgiAoytEtjD2L0rv4ay04qVkNcsXKr+3T0UkQxT/t4gejdv+GYJ3812FnG
+lKo6x2sPpq3S3STXJxkey1Z78/6zkKG/HoYMu4OK+wq/Yvvk71mjuuicn9etZ2r/
+RH1M8db3rN2Dbq+9ufi4MPzwczqACXNdCOJM56K3IdMznCu5kheEeunVLyn51EA+
+Q4s1XPvEqLGZOp3q3W1wB8zLKF+jhkrVHPO+7176ocbxuXYy2LWA
+          </ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </md:KeyDescriptor>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https:/{{.Env.SITENAME}}/Shibboleth.sso/SAML2/POST" index="0"/>
+  </md:SPSSODescriptor>
+</md:EntityDescriptor>

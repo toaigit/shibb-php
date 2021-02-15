@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  default:
+    external:
+      name: {{.Env.NETWORK}}
+
+services:
+
+  shibb:
+        image: {{.Env.DOCKERIMAGE}}
+        container_name: {{.Env.CONTAINER}}
+        restart: always
+        ports:
+                - "80:80"
+                - "443:443"
+        volumes: 
+          - {{.Env.DATADIR}}/html:/var/www/html
+          - {{.Env.DATADIR}}/log/apache2:/var/log/apache2
+          - {{.Env.DATADIR}}/log/shibboleth:/var/log/shibboleth
+          - {{.Env.DATADIR}}/certs:/etc/apache2/certs
+          - {{.Env.DATADIR}}/cgi-bin:/etc/apache2/cgi-bin
