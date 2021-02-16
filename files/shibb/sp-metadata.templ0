@@ -12,6 +12,6 @@ SP-CERT
         </ds:X509Data>
       </ds:KeyInfo>
     </md:KeyDescriptor>
-    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https:/{{.Env.SITENAME}}/Shibboleth.sso/SAML2/POST" index="0"/>
+    <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://{{.Env.SITENAME}}/Shibboleth.sso/SAML2/POST" index="0"/>
   </md:SPSSODescriptor>
 </md:EntityDescriptor>
